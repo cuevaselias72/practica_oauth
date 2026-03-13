@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    container_name: app_socialite
+    volumes: [".:/var/www"]
+    networks: [socialite_net]
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: laravel_db
+      MYSQL_ROOT_PASSWORD: root
+    networks: [socialite_net]
+networks:
+  socialite_net:
+    driver: bridge
