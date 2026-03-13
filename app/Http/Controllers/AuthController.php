@@ -8,9 +8,14 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-    // Redirigir al proveedor (Twitch o Spotify)
     public function redirect($provider)
     {
+        if ($provider === 'spotify') {
+            return Socialite::driver($provider)
+                ->scopes(['user-read-email', 'user-read-private'])
+                ->redirect();
+        }
+
         return Socialite::driver($provider)->redirect();
     }
 

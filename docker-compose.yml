@@ -3,6 +3,8 @@ services:
     build: .
     container_name: app_socialite
     volumes: [".:/var/www"]
+    ports:
+      - "8000:8000"
     networks: [socialite_net]
   db:
     image: mysql:8.0
